@@ -36,6 +36,7 @@ public class Solution {
 		ArrayList<Integer> eList = new ArrayList<>();
 		for (int i = 0; i < g.size(); i++)
 		{
+			output[i] = 0;
 			eList = g.get(i);
 			for (int j = 0; j < eList.size(); j++) {
 				if (!edges.containsKey(i)) {
@@ -48,9 +49,6 @@ public class Solution {
 		nodesVisited.add(node); //adds first node as visited
 
 		todoQueue.add(node);
-
-		for (int i = 0; i < g.size(); i++)
-			output[i] = 0;
 
 		while (!todoQueue.isEmpty())
 		{
@@ -83,6 +81,12 @@ public class Solution {
 	}
 
 	public int[] outputDistances() {
+		for (int i = 0; i < graph.size(); i++)
+		{
+			if (i != startNode && output[i] == 0)
+				output[i] = -1;
+		}
+
 		return output;
 	}
 }
