@@ -10,7 +10,7 @@ public class Solution {
 	private int[] output;
 
 
-	class Edge {
+	class Edge { //Edge to make traversal and checking easier
 		int from;
 		int to;
 
@@ -21,20 +21,22 @@ public class Solution {
 		}
 	}
 
+	//Used Textbook and Slides/331 Notes
+
 	public Solution(int node, HashMap<Integer, ArrayList<Integer>> g) {
 
 		startNode = node;
 		graph = g;
 		output = new int[g.size()];
 
-		HashSet<Integer> nodesVisited = new HashSet<>();
+		HashSet<Integer> nodesVisited = new HashSet<>(); //hashset for immediate contains
 		HashMap<Integer, List<Edge>> edges = new HashMap<>();
 		HashMap<Integer, HashSet<Edge>> edgesVisited = new HashMap<>();
 		HashSet<Edge> edgeSet;
-		Queue<Integer> todoQueue = new LinkedList<>();
+		Queue<Integer> todoQueue = new LinkedList<>(); //queue for nodes
 
-		ArrayList<Integer> eList = new ArrayList<>();
-		for (int i = 0; i < g.size(); i++)
+		ArrayList<Integer> eList;
+		for (int i = 0; i < g.size(); i++) //sets all vals in output to 0 and sets up all edges
 		{
 			output[i] = 0;
 			eList = g.get(i);
@@ -80,7 +82,7 @@ public class Solution {
 
 	}
 
-	public int[] outputDistances() {
+	public int[] outputDistances() { //checks for any value that could not be visited from start node
 		for (int i = 0; i < graph.size(); i++)
 		{
 			if (i != startNode && output[i] == 0)
